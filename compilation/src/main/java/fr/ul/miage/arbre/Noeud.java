@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 public abstract class Noeud {
 	private static final Logger LOG = Logger.getLogger(Noeud.class.getName());
 	//les catégories de noeuds possibles
-	static enum Categories {
+	public static enum Categories {
 			PROG, FONCTION, BLOC,
 			AFF, SI,  TQ, ECR, RET,
 			PLUS, MOINS, DIV, MUL,

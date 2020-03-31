@@ -2,12 +2,21 @@ package fr.ul.miage.coco.compilation;
 
 
 import fr.ul.miage.arbre.*;
+import fr.ul.miage.arbre.Noeud.Categories;
 import fr.ul.miage.tds.*;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		
+		//Exemple 1
+		//Création de l'arbre de l'exemple 1
+		Prog a = new Prog();
+		NoeudObj n = new NoeudObj();
+		n.setCat(Categories.FONCTION);
+		n.setValeur("main");
+		a.ajouterUnFils(n);
+		System.out.println(a.toString());
+		System.out.println(a.getFils().get(0).toString());
 	}
 	
 	public static String generer_programme(Noeud a, Tds t) {
