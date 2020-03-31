@@ -28,4 +28,32 @@ public class Main {
 	public static String generer_code(Prog a) {
 		return "a faire";
 	}
+	
+	public static String generer_expression(Prog a, Tds t) {
+		return "a faire";
+	}
+	
+	public static String generer_affectation(Prog a, Tds t) {
+		return "a faire";
+	}
+	
+	public static String generer_instruction(Prog a, Tds t) {
+		return "a faire";
+	}
+	
+	public static String generer_ecrire(Prog a, Tds t) {
+		return "a faire";
+	}
+	
+	public static String generer_si(Prog a, Tds t) {
+		return "a faire";
+	}
+	
+	public static String generer_bloc(Prog a, Tds t) {
+		return "a faire";
+	}
+	
+	public static String generer_expression_boolean(Prog a, Tds t) {
+		return "a faire";
+	}
 }
