@@ -1,12 +1,10 @@
 package fr.ul.miage.coco.compilation;
 
-import java.util.logging.Logger;
 
 import fr.ul.miage.arbre.*;
 import fr.ul.miage.tds.*;
 
 public class Main {
-	private static final Logger LOG = Logger.getLogger(Main.class.getName());
 	
 	public static void main(String[] args) {
 		
