@@ -1,11 +1,14 @@
 package fr.ul.miage.coco.compilation;
 
 
+import java.util.logging.Logger;
+
 import fr.ul.miage.arbre.*;
 import fr.ul.miage.arbre.Noeud.Categories;
 import fr.ul.miage.tds.*;
 
 public class Main {
+	private static final Logger LOG = Logger.getLogger(Tds.class.getName());
 	
 	public static void main(String[] args) {
 		//Exemple 1
@@ -15,8 +18,18 @@ public class Main {
 		n.setCat(Categories.FONCTION);
 		n.setValeur("main");
 		a.ajouterUnFils(n);
-		System.out.println(a.toString());
-		System.out.println(a.getFils().get(0).toString());
+		//Création du tds de l'exemple 1
+		Tds t = new Tds();
+		try {
+			Symbole s = t.ajouter("main", Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
+			s.set_nbparam(0);
+			s.set_nbloc(0);
+		} catch (Exception e) {
+			LOG.warning(e.getMessage());
+		}
+		System.out.println(t.toString());
+		//appel pour génération
+		//System.out.print(generer_programme(a, t));
 	}
 	
 	public static String generer_programme(Noeud a, Tds t) {
