@@ -10,7 +10,7 @@ public class Main {
 		
 	}
 	
-	public static String generer_Noeudramme(Noeud a, Tds t) {
+	public static String generer_programme(Noeud a, Tds t) {
 		String newLigne = System.getProperty("line.separator");
 		String res;
 		res = "";
