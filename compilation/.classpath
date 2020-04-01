@@ -34,9 +34,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="/tds-1.0"/>
-	<classpathentry exported="true" kind="src" path="/arbre-1.1"/>
-	<classpathentry kind="lib" path="C:/Users/colle/.m2/repository/junit/junit/4.12/junit-4.12.jar" sourcepath="C:/Users/colle/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/colle/.m2/repository/junit/junit/4.12/junit-4.12.jar" sourcepath="C:/Users/colle/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="maven.groupId" value="junit"/>

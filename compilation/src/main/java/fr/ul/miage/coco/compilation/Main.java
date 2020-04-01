@@ -12,7 +12,7 @@ public class Main {
 	public static String newLigne = System.getProperty("line.separator");
 	
 	public static void main(String[] args) {
-		//Exemple 1
+		//Exemple 1 blabla
 		//Création de l'arbre de l'exemple 1
 		Prog a = new Prog();
 		NoeudObj n = new NoeudObj();
