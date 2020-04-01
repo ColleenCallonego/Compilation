@@ -9,6 +9,7 @@ import fr.ul.miage.tds.*;
 
 public class Main {
 	private static final Logger LOG = Logger.getLogger(Tds.class.getName());
+	public static String newLigne = System.getProperty("line.separator");
 	
 	public static void main(String[] args) {
 		//Exemple 1
@@ -33,7 +34,6 @@ public class Main {
 	}
 	
 	public static String generer_programme(Noeud a, Tds t) {
-		String newLigne = System.getProperty("line.separator");
 		String res;
 		res = "";
 		res += ".include.uasm" + newLigne + ".include intio.uasm" + newLigne + ".options tty" + newLigne + "CMOVE(pile, sp)" + newLigne + "BR(debut)";
@@ -56,7 +56,6 @@ public class Main {
 	}
 	
 	public static String generer_affectation(Noeud a, Tds t) {
-		String newLigne = System.getProperty("line.separator");
 		String res;
 		res = "";
 		res += generer_expression(a.getFils().get(0), t);
