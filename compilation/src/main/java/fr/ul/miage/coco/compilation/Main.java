@@ -43,14 +43,19 @@ public class Main {
 		return res;
 	}
 	
-	public static String generer_data(Tds t) {
-		return "a faire";
-	}
+	public static String generer_data(Tds t) { return "a faire"; }
 	
 	public static String generer_code(Noeud a) {
+		String res = "";
+		for(Noeud  f : a.getFils()){
+			res += generer_fonction(f);
+		}
+		return res;
+	}
+
+	public static String generer_fonction(Noeud f){
 		return "a faire";
 	}
-	
 	public static String generer_expression(Noeud a, Tds t) {
 		return "a faire";
 	}
@@ -58,12 +63,28 @@ public class Main {
 	public static String generer_affectation(Noeud a, Tds t) {
 		String res;
 		res = "";
-		res += generer_expression(a.getFils().get(0), t);
+		res += generer_expression(a.getFils().get(1), t);
 		res += newLigne + "POP(R0)" + newLigne + "ST(R0, " + a.getFils().get(0).getLabel() + ")";
 		return res;
 	}
-	
+
 	public static String generer_instruction(Noeud a, Tds t) {
+		String res = "";
+		switch(a.getCat()){
+			case AFF :
+				res += generer_affectation(a, t);
+				break;
+			case ECR :
+				res += generer_ecrire(a,t);
+				break;
+			case LIRE :
+				res += generer_lire(a,t);
+				break;
+		}
+		return res;
+	}
+
+	public static String generer_lire(Noeud a, Tds t){
 		return "a faire";
 	}
 	
@@ -80,6 +101,32 @@ public class Main {
 	}
 	
 	public static String generer_expression_boolean(Noeud a, Tds t) {
-		return "a faire";
+		String res = "";
+		if(a.getCat().equals("SUP")){
+			res += generer_expression(a.getFils().get(0),t);
+			res += generer_expression(a.getFils().get(1),t);
+			res += newLigne + "POP(R2)" + newLigne + "POP(R1)" + newLigne + "CMPLT(R2, R1, R3)" + newLigne + "PUSH(R3)";
+		}
+		if(a.getCat().equals("SUPE")){
+			res += generer_expression(a.getFils().get(0),t);
+			res += generer_expression(a.getFils().get(1),t);
+			res += newLigne + "POP(R2)" + newLigne + "POP(R1)" + newLigne + "CMPLE(R2, R1, R3)" + newLigne + "PUSH(R3)";
+		}
+		if(a.getCat().equals("INF")){
+			res += generer_expression(a.getFils().get(0),t);
+			res += generer_expression(a.getFils().get(1),t);
+			res += newLigne + "POP(R2)" + newLigne + "POP(R1)" + newLigne + "CMPLT(R1, R2, R3)" + newLigne + "PUSH(R3)";
+		}
+		if(a.getCat().equals("INFE")){
+			res += generer_expression(a.getFils().get(0),t);
+			res += generer_expression(a.getFils().get(1),t);
+			res += newLigne + "POP(R2)" + newLigne + "POP(R1)" + newLigne + "CMPLE(R1, R2, R3)" + newLigne + "PUSH(R3)";
+		}
+		if(a.getCat().equals("EG")){
+			res += generer_expression(a.getFils().get(0),t);
+			res += generer_expression(a.getFils().get(1),t);
+			res += newLigne + "POP(R2)" + newLigne + "POP(R1)" + newLigne + "CMPEQ(R1, R2, R3)" + newLigne + "PUSH(R3)";
+		}
+		return res;
 	}
 }
