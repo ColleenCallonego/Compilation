@@ -12,7 +12,7 @@ public class Main {
 	public static String newLigne = System.getProperty("line.separator");
 	
 	public static void main(String[] args) {
-		//Exemple 1 blabla
+		//Exemple 1
 		//Création de l'arbre de l'exemple 1
 		Prog a = new Prog();
 		NoeudObj n = new NoeudObj();
@@ -28,33 +28,41 @@ public class Main {
 		} catch (Exception e) {
 			LOG.warning(e.getMessage());
 		}
-		System.out.println(t.toString());
 		//appel pour génération
-		//System.out.print(generer_programme(a, t));
+		System.out.print(generer_programme(a, t));
 	}
 	
 	public static String generer_programme(Noeud a, Tds t) {
-		String res;
-		res = "";
-		res += ".include.uasm" + newLigne + ".include intio.uasm" + newLigne + ".options tty" + newLigne + "CMOVE(pile, sp)" + newLigne + "BR(debut)";
+		String res = "";
+		res += ".include beta.uasm" + newLigne + ".include intio.uasm" + newLigne + ".options tty" + newLigne + "CMOVE(pile, SP)" + newLigne + "BR(debut)";
 		res += newLigne + generer_data(t);
-		res += newLigne + generer_code(a);
-		res += newLigne + "debut :" + newLigne + "CALL(main)" + newLigne + "HALT()" + newLigne + "pile :";
+		res += generer_code(a, t);
+		res += newLigne + "debut : " + "CALL(main)" + newLigne + "HALT()" + newLigne + "pile :";
 		return res;
 	}
 	
-	public static String generer_data(Tds t) { return "a faire"; }
+	public static String generer_data(Tds t) {
+		return "a faire"; 
+	}
 	
-	public static String generer_code(Noeud a) {
+	public static String generer_code(Noeud a, Tds t) {
 		String res = "";
 		for(Noeud  f : a.getFils()){
-			res += generer_fonction(f);
+			res += newLigne + generer_fonction(f, t);
 		}
 		return res;
 	}
 
-	public static String generer_fonction(Noeud f){
-		return "a faire";
+	public static String generer_fonction(Noeud n, Tds t){
+		String res ="";
+		res += n.getLabel() + " : PUSH(LP)" + newLigne + "PUSH(BP)" + newLigne + "MOVE(SP, BP)";
+		if (n.getFils() != null) {
+			for(Noeud f : n.getFils()) {
+				res += newLigne + generer_bloc(f, t);
+			}
+		}
+		res += newLigne + "MOVE(BP, SP)" + newLigne + "POP(BP)" + newLigne + "POP(LP)" + newLigne + "RTN()";
+		return res;
 	}
 	public static String generer_expression(Noeud a, Tds t) {
 		return "a faire";
