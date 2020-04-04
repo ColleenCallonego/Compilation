@@ -36,7 +36,7 @@ public class Tds {
 	private static final Logger LOG = Logger.getLogger(Tds.class.getName());
 
 	//fields
-	private Map<String, List<Symbole>> table;
+	/*private*/public Map<String, List<Symbole>> table;
 	//contructors
 	public Tds() {
 		table = new HashMap<String, List<Symbole>>();

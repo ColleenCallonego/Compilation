@@ -1,6 +1,8 @@
 package fr.ul.miage.coco.compilation;
 
 
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import fr.ul.miage.arbre.*;
@@ -12,7 +14,7 @@ public class Main {
 	public static String newLigne = System.getProperty("line.separator");
 	
 	public static void main(String[] args) {
-		Exemple e = new Exemple(1);
+		Exemple e = new Exemple(2);
 		//appel pour génération
 		System.out.print(generer_programme(e.a, e.t));
 	}
@@ -20,14 +22,28 @@ public class Main {
 	public static String generer_programme(Noeud a, Tds t) {
 		String res = "";
 		res += ".include beta.uasm" + newLigne + ".include intio.uasm" + newLigne + ".options tty" + newLigne + "CMOVE(pile, SP)" + newLigne + "BR(debut)";
-		res += newLigne + generer_data(t);
+		res += generer_data(t);
 		res += generer_code(a, t);
 		res += newLigne + "debut : " + "CALL(main)" + newLigne + "HALT()" + newLigne + "pile :";
 		return res;
 	}
 	
 	public static String generer_data(Tds t) {
-		return "a faire"; 
+		String res = "";
+		Set<String> set = t.table.keySet();
+		for(String s : set) {
+			int init = 0;
+			List<Symbole> listSym = t.table.get(s);
+			for (Symbole sym : listSym) {
+				if (sym.getCat().equals("int") && sym.getScope().equals("global")){
+					if (sym.get_valeur() != 0) {
+						init = sym.get_valeur();
+						res += newLigne + s + " : LONG(" + init + ")"; 
+					}
+				}
+			}
+		}
+		return res; 
 	}
 	
 	public static String generer_code(Noeud a, Tds t) {
