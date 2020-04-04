@@ -14,7 +14,7 @@ public class Main {
 	public static String newLigne = System.getProperty("line.separator");
 	
 	public static void main(String[] args) {
-		Exemple e = new Exemple(2);
+		Exemple e = new Exemple(3);
 		//appel pour génération
 		System.out.print(generer_programme(e.a, e.t));
 	}
@@ -38,8 +38,8 @@ public class Main {
 				if (sym.getCat().equals("int") && sym.getScope().equals("global")){
 					if (sym.get_valeur() != 0) {
 						init = sym.get_valeur();
-						res += newLigne + s + " : LONG(" + init + ")"; 
 					}
+					res += newLigne + s + " : LONG(" + init + ")"; 
 				}
 			}
 		}

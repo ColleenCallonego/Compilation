@@ -27,11 +27,11 @@ package fr.ul.miage.arbre;
  * @author Azim Roussanaly
  * Created at 28 févr. 2019
  */
-class NoeudInt extends Noeud {
+public class NoeudInt extends Noeud {
 	//attribut
 	private int valeur;
 	//constructeur
-	protected NoeudInt() {
+	public NoeudInt() {
 		setValeur(0);
 	}
 	/* (non-Javadoc)

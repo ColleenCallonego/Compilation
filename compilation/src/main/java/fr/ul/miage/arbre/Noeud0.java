@@ -27,9 +27,9 @@ package fr.ul.miage.arbre;
  * @author Azim Roussanaly
  * Created at 28 févr. 2019
  */
-class Noeud0 extends Noeud {
+public class Noeud0 extends Noeud {
 	//constructeur
-	protected Noeud0() {
+	public Noeud0() {
 	}
 
 	/* (non-Javadoc)
