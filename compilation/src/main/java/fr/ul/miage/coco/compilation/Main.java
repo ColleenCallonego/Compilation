@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import fr.ul.miage.arbre.*;
-import fr.ul.miage.arbre.Noeud.Categories;
 import fr.ul.miage.tds.*;
 
 public class Main {
@@ -66,7 +65,61 @@ public class Main {
 		return res;
 	}
 	public static String generer_expression(Noeud a, Tds t) {
-		return "a faire";
+		String res;
+		res = "";
+		switch(a.getCat()) {
+		/*La racine de l'arbre en paramètre est une constante*/
+		case CONST:
+			res += "CMOVE("+a.getLabel()+", R0)" + newLigne + 
+				   "PUSH(R0)";
+			break;
+		/*La racine de l'arbre en paramètre est un identifient*/
+		case IDF:
+			res += "LD("+a.getLabel()+", R0)" + newLigne + 
+				   "PUSH(R0)";
+			break;
+		/*La racine de l'arbre en paramètre est une opération : ADDITION*/
+		case PLUS:
+			res += generer_expression(a.getFils().get(0), t) + newLigne;
+			res += generer_expression(a.getFils().get(1), t) + newLigne;
+			res += "POP(R2)" + newLigne +
+				   "POP(R1)" + newLigne +
+				   "ADD(R1, R2, R3)" + newLigne +
+				   "PUSH(R3)" + newLigne;
+			break;
+		/*La racine de l'arbre en paramètre est une opération : SOUSTRACTION*/
+		case MOINS:
+			res += generer_expression(a.getFils().get(0), t) + newLigne;
+			res += generer_expression(a.getFils().get(1), t) + newLigne;
+			res += "POP(R2)" + newLigne +
+				   "POP(R1)" + newLigne +
+				   "SUB(R1, R2, R3)" + newLigne +
+				   "PUSH(R3)" + newLigne;
+			break;
+		/*La racine de l'arbre en paramètre est une opération : MULTIPLICATION*/
+		case MUL:
+			res += generer_expression(a.getFils().get(0), t) + newLigne;
+			res += generer_expression(a.getFils().get(1), t) + newLigne;
+			res += "POP(R2)" + newLigne +
+				   "POP(R1)" + newLigne +
+				   "MUL(R1, R2, R3)" + newLigne +
+				   "PUSH(R3)" + newLigne;
+			break;
+		/*La racine de l'arbre en paramètre est une opération : DIVISION*/
+		case DIV:
+			res += generer_expression(a.getFils().get(0), t) + newLigne;
+			res += generer_expression(a.getFils().get(1), t) + newLigne;
+			res += "POP(R2)" + newLigne +
+				   "POP(R1)" + newLigne +
+				   "DIV(R1, R2, R3)" + newLigne +
+				   "PUSH(R3)" + newLigne;
+			break;
+		/*La racine de l'arbre en paramètre ne correspond à aucun t*/
+		default:
+			System.out.println("Erreur l'arbre ne correspond pas à une expression");
+			break;
+		}
+		return res;
 	}
 	
 	public static String generer_affectation(Noeud a, Tds t) {
@@ -92,13 +145,22 @@ public class Main {
 		}
 		return res;
 	}
-
-	public static String generer_lire(Noeud a, Tds t){
-		return "a faire";
-	}
 	
 	public static String generer_ecrire(Noeud a, Tds t) {
-		return "a faire";
+		String res;
+		res = "";
+		res += generer_expression(a.getFils().get(0), t) + newLigne;
+		res += "POP(R0)" + newLigne + 
+			   "WRINT()" + newLigne;
+		return res;
+	}
+	
+	public static String generer_lire(Noeud a, Tds t) {
+		String res;
+		res = "";
+		res += "RDINT()" + newLigne +
+			   "PUSH(R0)";
+		return res;
 	}
 	
 	public static String generer_si(Noeud a, Tds t) {
