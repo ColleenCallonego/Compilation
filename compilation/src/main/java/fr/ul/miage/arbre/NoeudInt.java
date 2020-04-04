@@ -46,7 +46,7 @@ public class NoeudInt extends Noeud {
 		return buf.toString();
 	}
 	//setters & getters
-	public int getValeur() {
+	public Object getValeur() {
 		return valeur;
 	}
 	public void setValeur(int valeur) {

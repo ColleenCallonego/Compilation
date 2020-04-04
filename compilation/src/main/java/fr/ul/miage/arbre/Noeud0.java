@@ -40,5 +40,6 @@ public class Noeud0 extends Noeud {
 		String label = getCat().toString();
 		return label;
 	}
+	
 
 }

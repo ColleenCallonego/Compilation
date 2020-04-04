@@ -70,12 +70,12 @@ public class Main {
 		switch(a.getCat()) {
 		/*La racine de l'arbre en paramètre est une constante*/
 		case CONST:
-			res += "CMOVE("+a.getLabel()+", R0)" + newLigne + 
+			res += "CMOVE("+a.getValeur()+", R0)" + newLigne + 
 				   "PUSH(R0)";
 			break;
-		/*La racine de l'arbre en paramètre est un identifient*/
+		/*La racine de l'arbre en paramètre est un identifiant*/
 		case IDF:
-			res += "LD("+a.getLabel()+", R0)" + newLigne + 
+			res += "LD("+a.getValeur()+", R0)" + newLigne + 
 				   "PUSH(R0)";
 			break;
 		/*La racine de l'arbre en paramètre est une opération : ADDITION*/
@@ -168,7 +168,9 @@ public class Main {
 	}
 	
 	public static String generer_bloc(Noeud a, Tds t) {
-		return "a faire";
+		String res = "";
+		res += generer_instruction(a, t);
+		return res;
 	}
 	
 	public static String generer_expression_boolean(Noeud a, Tds t) {

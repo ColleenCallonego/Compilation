@@ -54,4 +54,5 @@ public class NoeudObj extends Noeud {
 	public void setValeur(Object valeur) {
 		this.valeur = valeur;
 	}
+
 }

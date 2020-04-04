@@ -134,7 +134,7 @@ public class Exemple {
 				//Création du tds
 				t = new Tds();
 				try {
-					Symbole s = t.ajouter("main", Symbole.TYPE_ENTIER, Symbole.SCOPE_GLOBAL);
+					Symbole s = t.ajouter("main", Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
 					s.set_nbparam(0);
 					s.set_nbloc(0);
 				} catch (Exception e) {

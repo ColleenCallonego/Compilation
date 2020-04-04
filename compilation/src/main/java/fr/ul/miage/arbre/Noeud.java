@@ -47,6 +47,10 @@ public abstract class Noeud {
 	//abstract
 	abstract public String  getLabel();
 	
+	public  Object getValeur() {
+		return "";
+	}
+	
 	//methodes
 	/**
 	 * ajouter un fils à un noeud
