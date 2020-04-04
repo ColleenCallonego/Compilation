@@ -12,24 +12,9 @@ public class Main {
 	public static String newLigne = System.getProperty("line.separator");
 	
 	public static void main(String[] args) {
-		//Exemple 1
-		//Création de l'arbre de l'exemple 1
-		Prog a = new Prog();
-		NoeudObj n = new NoeudObj();
-		n.setCat(Categories.FONCTION);
-		n.setValeur("main");
-		a.ajouterUnFils(n);
-		//Création du tds de l'exemple 1
-		Tds t = new Tds();
-		try {
-			Symbole s = t.ajouter("main", Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
-			s.set_nbparam(0);
-			s.set_nbloc(0);
-		} catch (Exception e) {
-			LOG.warning(e.getMessage());
-		}
+		Exemple e = new Exemple(1);
 		//appel pour génération
-		System.out.print(generer_programme(a, t));
+		System.out.print(generer_programme(e.a, e.t));
 	}
 	
 	public static String generer_programme(Noeud a, Tds t) {
