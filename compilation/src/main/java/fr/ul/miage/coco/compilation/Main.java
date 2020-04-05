@@ -114,7 +114,11 @@ public class Main {
 				   "DIV(R1, R2, R3)" + newLigne +
 				   "PUSH(R3)" + newLigne;
 			break;
-		/*La racine de l'arbre en paramètre ne correspond à aucun t*/
+		/*La racine de l'arbre en paramètre est une lecture*/
+		case LIRE :
+			res += generer_lire(a,t);
+			break;
+		/*La racine de l'arbre en paramètre ne correspond à aucune catégorie utilisable dans cette méthode*/
 		default:
 			System.out.println("Erreur l'arbre ne correspond pas à une expression");
 			break;
@@ -139,9 +143,9 @@ public class Main {
 			case ECR :
 				res += generer_ecrire(a,t);
 				break;
-			case LIRE :
-				res += generer_lire(a,t);
-				break;
+		default:
+			System.out.println("Erreur l'arbre ne correspond pas à une instruction");
+			break;
 		}
 		return res;
 	}
