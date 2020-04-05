@@ -31,7 +31,7 @@ public class Exemple {
 				//Création du tds
 				t = new Tds();
 				try {
-					Symbole s = t.ajouter("main", Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
+					Symbole s = t.ajouter("main", Symbole.TYPE_VOID, Symbole.CAT_FONCTION);
 					s.set_nbparam(0);
 					s.set_nbloc(0);
 				} catch (Exception e) {
@@ -48,7 +48,7 @@ public class Exemple {
 				//Création du tds
 				t = new Tds();
 				try {
-					Symbole s = t.ajouter("main", Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
+					Symbole s = t.ajouter("main", Symbole.TYPE_VOID, Symbole.CAT_FONCTION);
 					s.set_nbparam(0);
 					s.set_nbloc(0);
 				} catch (Exception e) {
@@ -134,7 +134,7 @@ public class Exemple {
 				//Création du tds
 				t = new Tds();
 				try {
-					Symbole s = t.ajouter("main", Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
+					Symbole s = t.ajouter("main", Symbole.TYPE_VOID, Symbole.CAT_FONCTION);
 					s.set_nbparam(0);
 					s.set_nbloc(0);
 				} catch (Exception e) {
@@ -164,7 +164,79 @@ public class Exemple {
 				}
 				break;
 			case 4 : //Exemple 4
+				//Création de l'arbre
+				a = new Prog();
+				NoeudObj n4_1 = new NoeudObj();
+				n4_1.setCat(Categories.FONCTION);
+				n4_1.setValeur("main");
+				n4_1.setFils(new ArrayList<>());
 				
+				Noeud0 n4_2 = new Noeud0();
+				n4_2.setCat(Categories.AFF);
+				n4_2.setFils(new ArrayList<>());
+				
+				NoeudObj n4_3 = new NoeudObj();
+				n4_3.setCat(Categories.IDF);
+				n4_3.setValeur("i");
+				n4_3.setFils(new ArrayList<>());
+				
+				n4_2.ajouterUnFils(n4_3);
+				
+				Noeud0 n4_4 = new Noeud0();
+				n4_4.setCat(Categories.LIRE);
+				n4_4.setFils(new ArrayList<>());
+				
+				n4_2.ajouterUnFils(n4_4);
+				
+				n4_1.ajouterUnFils(n4_2);
+				
+				Noeud0 n4_5 = new Noeud0();
+				n4_5.setCat(Categories.ECR);
+				n4_5.setFils(new ArrayList<>());
+				
+				Noeud0 n4_6 = new Noeud0();
+				n4_6.setCat(Categories.PLUS);
+				n4_6.setFils(new ArrayList<>());
+				
+				NoeudObj n4_7 = new NoeudObj();
+				n4_7.setCat(Categories.IDF);
+				n4_7.setValeur("i");
+				n4_7.setFils(new ArrayList<>());
+				
+				n4_6.ajouterUnFils(n4_7);
+				
+				NoeudObj n4_8 = new NoeudObj();
+				n4_8.setCat(Categories.IDF);
+				n4_8.setValeur("j");
+				n4_8.setFils(new ArrayList<>());
+				
+				n4_6.ajouterUnFils(n4_8);
+				
+				n4_5.ajouterUnFils(n4_6);
+				
+				n4_1.ajouterUnFils(n4_5);
+				
+				a.ajouterUnFils(n4_1);
+				//Création du tds
+				t = new Tds();
+				try {
+					Symbole s = t.ajouter("main", Symbole.TYPE_VOID, Symbole.CAT_FONCTION);
+					s.set_nbparam(0);
+					s.set_nbloc(0);
+				} catch (Exception e) {
+					LOG.warning(e.getMessage());
+				}
+				try {
+					Symbole s = t.ajouter("i", Symbole.TYPE_ENTIER, Symbole.SCOPE_GLOBAL);
+				} catch (Exception e) {
+					LOG.warning(e.getMessage());
+				}
+				try {
+					Symbole s = t.ajouter("j", Symbole.TYPE_ENTIER, Symbole.SCOPE_GLOBAL);
+					s.set_valeur(20);
+				} catch (Exception e) {
+					LOG.warning(e.getMessage());
+				}
 				break;
 			case 5 : //Exemple 5
 				
